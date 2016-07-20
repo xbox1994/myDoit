@@ -1,0 +1,26 @@
+div.title{
+    text-align: center;
+    top: -2.5em;
+    position: relative;
+    height:0;
+}
+div.addIcon{
+    text-align: right;
+    top: -2.5em;
+    position: relative;
+    height:0;
+    padding:0 1em;
+}
+a.span.glyphicon{
+    text-decoration: none;
+    font-size: 1.3em;
+}
+div.emptyPrompt{
+    padding:2em;
+    text-align: center;
+    top: 5em;
+    position: relative;
+}
+a.cancelA{
+    text-decoration:none;
+}

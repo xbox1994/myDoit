@@ -1,0 +1,47 @@
+head
+  meta name="author" content="Tianyi Wang"
+  meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  script src="/views/js/jquery.min.js"
+  script src="/views/js/bootstrap.min.js"
+  link rel="stylesheet" href="/views/css/bootstrap.min.css"
+  link rel="stylesheet" href="/views/css/main.css"
+body
+  nav.navbar.navbar-default
+    div.container-fluid
+      div.navbar-header
+        div.btn-group
+          button.navbar-brand.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+            span.glyphicon.glyphicon-align-justify
+          ui.dropdown-menu
+            li
+              a href="collectionBox" 收集箱
+            li.divider
+            li
+              a href="doToday" 今日待办
+            li
+              a href="doTomorrow" 明日待办
+            li
+              a href="schedule" 日程
+            li.divider
+            li
+              a href="finished" 已完成
+            li
+              a href="dustbin" 垃圾箱
+        div.title 今日待办
+        div.addIcon
+          div.btn-group.btn-group-justified
+            a.span.glyphicon.glyphicon-plus href="newAction"
+    div.input-group
+      input.form-control type="text" data-bind="value: keyword"
+        span.glyphicon.glyphicon-search.input-group-addon
+
+  div.emptyPrompt data-bind="visible: isEmpty" 太棒了,这个箱子里的任务都已完成! </br>这里显示当天开始或到期的任务
+
+  div.list-group data-bind="foreach: list, visible: !isEmpty"
+    a.list-group-item data-bind="attr: {href: '/taskDetails/' + taskId}"
+      h4.list-group-item-heading data-bind="text: name"
+      p.list-group-item-text data-bind="text: date"
+
+
+  script src="/views/js/knockout-3.3.0.js"
+  script src="/views/js/app/doToday.js"
