@@ -32,18 +32,16 @@ body
           div.btn-group.btn-group-justified
             a.span.glyphicon.glyphicon-plus href="newAction"
     div.input-group
-      input.form-control type="text"
+      input.form-control type="text" data-bind="value: keyword"
         span.glyphicon.glyphicon-search.input-group-addon
 
-  div.emptyPrompt 太棒了,这个箱子里的任务都已完成! </br>将脑中一切待办任务放到这里,以待逐条细化
-  /
-  /div.list-group
-  /  a.list-group-item href="#"
-  /    h4.list-group-item-heading 搭好框架
-  /    p.list-group-item-text 07/19 周二
-  /  a.list-group-item href="#"
-  /    h4.list-group-item-heading Plan 2 Name
-  /    p.list-group-item-text Plan 2 time
-  /  a.list-group-item href="#"
-  /    h4.list-group-item-heading Plan 3 Name
-  /    p.list-group-item-text Plan 3 time
+  div.emptyPrompt data-bind="visible: rList().length==0" 太棒了,这个箱子里的任务都已完成! </br>将脑中一切待办任务放到这里,以待逐条细化
+
+  div.list-group data-bind="foreach: list, visible: rList().length>0"
+    a.list-group-item data-bind="attr: {href: '/taskDetails/' + _id()}"
+      h4.list-group-item-heading data-bind="text: title"
+      p.list-group-item-text data-bind="text: date"
+
+
+  script src="/views/js/knockout-3.3.0.js"
+  script src="/views/js/app/collectionBox.js"

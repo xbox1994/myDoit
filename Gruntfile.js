@@ -23,7 +23,27 @@ module.exports = function (grunt) {
                 }
             }
         },
+        concat:{
+            css:{
+                src:[
+                    'views/css/bootstrap.min.css',
+                    'views/css/jquery-ui.css',
+                    'views/css/main.css'
+                ],
+                dest: 'views/css/app.min.css'
+            },
+            js: {
+                src: [
+                    'views/js/jquery.min.js',
+                    'views/js/bootstrap.min.js',
+                    'views/js/jquery-ui.js',
+                    'views/js/knockout-3.3.0.js',
+                    'views/js/app/main.js'
+                ],
+                dest: 'views/js/app.min.js'
+            }
+        }
     });
-    grunt.registerTask('development', ['browserify', 'shell:thin']);
-    grunt.registerTask('dev', ['development']);
+    grunt.registerTask('dev', ['concat:css', 'shell:thin'])
+    grunt.registerTask('r', ['shell:thin'])
 };

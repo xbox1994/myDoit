@@ -42,4 +42,3 @@ var datePicker={
 }
 ko.bindingHandlers.datePicker = datePicker;
 
-module.exports = datePicker;

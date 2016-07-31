@@ -3,42 +3,39 @@ head
   meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   script src="/views/js/jquery.min.js"
   script src="/views/js/bootstrap.min.js"
-  script src="/views/js/jquery-ui.js"
-  link rel="stylesheet" href="/views/css/bootstrap.min.css"
-  link rel="stylesheet" href="/views/css/main.css"
-  link rel="stylesheet" href="/views/css/jquery-ui.css"
+  link rel="stylesheet" href="/views/css/app.min.css"
 body
   nav.navbar.navbar-default
     div.container-fluid
       div.navbar-header
         a.navbar-brand href="javascript:history.go(-1)"取消
       div.collapse.navbar-collapse
-        p.navbar-text.navbar-right
+        p.navbar-text.navbar-right data-bind="click: save"
           a.navbar-link href="#" 保存
-
-  form
-    div.form-group
-      input.form-control type="text" placeholder="标题" value="id为#{id}的标题"
-    div.form-group
-      textarea.form-control type="text" placeholder="描述"
-
   div id="subTask"
-    a data-bind="click: addSubTask" 添加子任务
-    table
-      tbody data-bind="foreach: subTasks"
-        tr
-          td
-            input data-bind="value: name"
-          td
-            a href="#" data-bind="click: $root.removeSubTask" Remove
+    form
+      div.form-group
+        input.form-control type="text" placeholder="标题" data-bind="value: title"
+      div.form-group
+        textarea.form-control type="text" placeholder="描述" data-bind="value: description"
+
+    div.onlyForGetId data-taskId="#{_id}"
+      a data-bind="click: addSubTask" 添加子任务
+      table data-bind="foreach: {data:subTask, as:'item'}"
+        tbody data-bind="foreach: {data:Object.keys(item), as:'key'}"
+          tr
+            td
+              input data-bind="value: item[key].name"
+            td
+              a href="#" data-bind="click: $root.removeSubTask" Remove
 
   div.list-group
     a.list-group-item href="#"
       h4.list-group-item-heading 开始时间
-      input data-bind="datePicker: myDate1" id="date1"
+      input data-bind="value: startDate"
     a.list-group-item href="#"
       h4.list-group-item-heading 截止时间
-      input data-bind="datePicker: myDate2" id="date2"
+      input data-bind="value: endDate"
 
   script src="/views/js/knockout-3.3.0.js"
-  script src="/views/js/app/main.js"
+  script src="/views/js/app/taskDetails.js"

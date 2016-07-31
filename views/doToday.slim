@@ -3,8 +3,7 @@ head
   meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   script src="/views/js/jquery.min.js"
   script src="/views/js/bootstrap.min.js"
-  link rel="stylesheet" href="/views/css/bootstrap.min.css"
-  link rel="stylesheet" href="/views/css/main.css"
+  link rel="stylesheet" href="/views/css/app.min.css"
 body
   nav.navbar.navbar-default
     div.container-fluid
@@ -35,11 +34,11 @@ body
       input.form-control type="text" data-bind="value: keyword"
         span.glyphicon.glyphicon-search.input-group-addon
 
-  div.emptyPrompt data-bind="visible: isEmpty" 太棒了,这个箱子里的任务都已完成! </br>这里显示当天开始或到期的任务
+  div.emptyPrompt data-bind="visible: rList().length==0" 太棒了,这个箱子里的任务都已完成! </br>这里显示当天开始或到期的任务
 
-  div.list-group data-bind="foreach: list, visible: !isEmpty"
-    a.list-group-item data-bind="attr: {href: '/taskDetails/' + taskId}"
-      h4.list-group-item-heading data-bind="text: name"
+  div.list-group data-bind="foreach: list, visible: rList().length>0"
+    a.list-group-item data-bind="attr: {href: '/taskDetails/' + _id()}"
+      h4.list-group-item-heading data-bind="text: title"
       p.list-group-item-text data-bind="text: date"
 
 

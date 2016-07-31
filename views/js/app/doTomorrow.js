@@ -6,7 +6,7 @@ function Task(data){
 
 function TaskModel(){
     var self = this;
-    self.type = 1;
+    self.type = 2;
 
     self.rList = ko.observableArray([]);
 

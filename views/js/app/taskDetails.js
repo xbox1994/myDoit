@@ -1,37 +1,39 @@
-require('../datePicker');
 function taskDetails() {
     var self = this;
-
-    self.taskDetailsInfo = ko.observableArray([
-        {name: "搭好框架", date: "07/19 周二", taskId: "1"}, {name: "Plan 2", date: "09/09 周一", taskId: "2"}
-    ]);
-
-    self.subTasks = ko.observableArray([
-        {name: "SubTask1"}, {name: "SubTask2"}
-    ]);
+    self._id = $('.onlyForGetId').attr('data-taskId');
+    self.title = ko.observable();
+    self.startDate = ko.observable();
+    self.endDate = ko.observable();
+    self.description = ko.observable();
+    self.subTask = ko.observableArray([]);
 
     self.addSubTask = function () {
-        self.subTasks.push({name: "new SubTask"});
+        self.subTask.push({name: "new SubTask"});
     }
 
     self.removeSubTask = function (subTask) {
-        self.subTasks.remove(subTask);
+        self.subTask.remove(subTask);
     }
+
+    $.getJSON("/getTaskDetailsBy_id/"+self._id, function(allData) {
+        self.title(allData[0].title);
+        self.startDate(allData[0].startDate);
+        self.endDate(allData[0].endDate);
+        self.description(allData[0].description);
+        self.subTask(allData[0].subTask);
+    });
+    self.save = function(){
+        $.post("/updateTaskDetails", {
+                _id: self._id,title: self.title(), description:self.description(), subTask: self.subTask(),
+                startDate:self.startDate(), endDate:self.endDate()
+            },function(data,status){
+            if("success"==status){
+                alert("保存成功");
+            }
+        }
+        );
+    };
 }
 
-ko.applyBindings(new taskDetails(), $('#subTask')[0]);
+ko.applyBindings(new taskDetails());
 
-var dateModel1 = function () {
-    var myDate = ko.observable(new Date());
-    return {
-        myDate1: myDate,
-    }
-}();
-var dateModel2 = function () {
-    var myDate = ko.observable(new Date());
-    return {
-        myDate2: myDate,
-    }
-}();
-ko.applyBindings(dateModel1, $('#date1')[0]);
-ko.applyBindings(dateModel2, $('#date2')[0]);
