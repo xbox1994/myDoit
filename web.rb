@@ -1,12 +1,14 @@
-require 'rubygems'
+
 require 'sinatra'
 require 'mongo'
 require 'json/ext'
 require 'slim'
 require 'json'
+require 'date'
 
 configure do
   set :mongo_db, Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'doit')
+
 end
 
 get '/' do
@@ -46,6 +48,7 @@ get '/newAction' do
 end
 
 post '/addTaskDetails' do
+  setTypeByStartDate(params);
   settings.mongo_db['col'].insert_one(params);
 end
 
@@ -58,8 +61,9 @@ get '/getTaskDetailsBy_id/:_id' do
 end
 
 post '/updateTaskDetails' do
+  setTypeByStartDate(params);
   settings.mongo_db['col'].update_one({'_id'=>BSON::ObjectId(params[:_id])},
-                                      {'$set'=>{title:params[:title],description:params[:description], subTask:params[:subTask],startDate:params[:startDate],endDate:params[:endDate]}});
+                                      {'$set'=>{type:params[:type],title:params[:title],description:params[:description], subTask:params[:subTask],startDate:params[:startDate],endDate:params[:endDate]}});
   status 201
   JSON.parse('{"hello": "goodbye"}')
 end
@@ -67,6 +71,23 @@ end
 get '/collections/?' do
   content_type :json
   settings.mongo_db.database.collection_names.to_json
+end
+
+put '/toFinished' do
+  settings.mongo_db['col'].update_one({'_id'=>BSON::ObjectId(params[:_id])},
+                                      {'$set'=>{type:'4'}});
+  JSON.parse('{"hello": "goodbye"}')
+end
+
+put '/toDustbin' do
+  settings.mongo_db['col'].update_one({'_id'=>BSON::ObjectId(params[:_id])},
+                                      {'$set'=>{type:'5'}});
+  JSON.parse('{"hello": "goodbye"}')
+end
+
+get '/emptyDustbin' do
+  settings.mongo_db['col'].delete_many(:type=>'5');
+  slim :dustbin
 end
 
 helpers do
@@ -107,3 +128,14 @@ set :public_folder, File.dirname('css')
 set :public_folder, File.dirname('js')
 set :public_folder, File.dirname('fonts')
 
+def setTypeByStartDate (params)
+  if(params[:startDate] == nil or params[:startDate] =='') then
+    params["type"] = '0'
+  elsif (Date.parse(params[:startDate]) - Date.today).to_i == 0 then
+    params["type"] = '1'
+  elsif (Date.parse(params[:startDate]) - Date.today).to_i == 1 then
+    params["type"] = '2'
+  else
+    params["type"] = '3'
+  end
+end

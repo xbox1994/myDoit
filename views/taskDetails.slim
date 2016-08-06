@@ -9,9 +9,9 @@ body
     div.container-fluid
       div.navbar-header
         a.navbar-brand href="javascript:history.go(-1)"取消
-      div.collapse.navbar-collapse
-        p.navbar-text.navbar-right data-bind="click: save"
-          a.navbar-link href="#" 保存
+        div.addIcon
+          div.btn-group.btn-group-justified
+            a.span.glyphicon.glyphicon-ok href="#" data-bind="click: save"
   div id="subTask"
     form
       div.form-group
@@ -21,21 +21,23 @@ body
 
     div.onlyForGetId data-taskId="#{_id}"
       a data-bind="click: addSubTask" 添加子任务
-      table data-bind="foreach: {data:subTask, as:'item'}"
-        tbody data-bind="foreach: {data:Object.keys(item), as:'key'}"
+      table data-bind="foreach: subTask"
+        tbody
           tr
             td
-              input data-bind="value: item[key].name"
+              input data-bind="value: name"
             td
               a href="#" data-bind="click: $root.removeSubTask" Remove
 
   div.list-group
     a.list-group-item href="#"
       h4.list-group-item-heading 开始时间
-      input data-bind="value: startDate"
+      input data-bind="value: startDate, datePicker: startDate, datePickerOptions: { 'dateFormat': 'yy/mm/dd',minDate: new Date() }"
     a.list-group-item href="#"
       h4.list-group-item-heading 截止时间
-      input data-bind="value: endDate"
+      input data-bind="value: endDate, datePicker: endDate, datePickerOptions: { minDate: new Date() }"
 
   script src="/views/js/knockout-3.3.0.js"
+  script src="/views/js/jquery-ui.js"
+  script src="/views/js/datePicker.js"
   script src="/views/js/app/taskDetails.js"

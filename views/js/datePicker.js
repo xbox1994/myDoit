@@ -8,7 +8,7 @@ var datePicker={
             todayHighlight: true,
             autoclose: true,
             daysOfWeekDisabled: [0, 6],
-            format: 'mm/dd/yyyy'
+            format: 'yyyy/mm/dd'
         };
         if (binding.datePickerOptions) {
             options = $.extend(options, binding.datePickerOptions);

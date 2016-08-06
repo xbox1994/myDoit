@@ -1,9 +1,3 @@
-function Task(data){
-    this.title = ko.observable(data.title);
-    this.date = ko.observable(data.date);
-    this._id = ko.observable(data._id.$oid);
-}
-
 function TaskModel(){
     var self = this;
     self.type = 1;
@@ -32,5 +26,36 @@ function TaskModel(){
         var mappedTasks = $.map(allData, function(item) { return new Task(item) });
         self.rList(mappedTasks);
     });
+
+    function Task(data){
+        var s = this;
+        s.title = ko.observable(data.title);
+        s.date = ko.observable(data.date);
+        s._id = ko.observable(data._id.$oid);
+        s.toFinish = function(){
+            $.ajax({
+                type: 'PUT',
+                url: '/toFinished',
+                data: {_id:s._id},
+                success: function(data,status){
+                    if(status == 'success'){
+                        self.rList.remove(s);
+                    }
+                },
+            });
+        }
+        s.toDustbin = function(){
+            $.ajax({
+                type: 'PUT',
+                url: '/toDustbin',
+                data: {_id:s._id},
+                success: function(data,status){
+                    if(status == 'success'){
+                        self.rList.remove(s);
+                    }
+                },
+            });
+        }
+    }
 }
 ko.applyBindings(new TaskModel());

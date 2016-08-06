@@ -1,3 +1,4 @@
+
 function subTaskModel(){
     var self=this;
     self.title = ko.observable();
@@ -13,10 +14,10 @@ function subTaskModel(){
     self.removeSubTask = function(subTask){
         self.subTask.remove(subTask);
     }
-    self.save = function(){
+    self.save = function(type){
         $.post("/addTaskDetails", {
-                title: self.title(), description:self.description(), subTask: self.subTask(),
-                startDate:self.startDate(), endDate:self.endDate(), type:0, date:new Date()
+                title: self.title(), description:self.description(), subTask: ko.toJSON(self.subTask()),
+                startDate:self.startDate(), endDate:self.endDate(), type:0, date:new Date().toLocaleString()
             },function(data,status){
                 if("success"==status){
                     alert("保存成功");

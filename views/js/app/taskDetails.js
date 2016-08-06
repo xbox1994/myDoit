@@ -7,7 +7,7 @@ function taskDetails() {
     self.description = ko.observable();
     self.subTask = ko.observableArray([]);
 
-    self.addSubTask = function () {
+    self.addSubTask = function (index) {
         self.subTask.push({name: "new SubTask"});
     }
 
@@ -20,11 +20,11 @@ function taskDetails() {
         self.startDate(allData[0].startDate);
         self.endDate(allData[0].endDate);
         self.description(allData[0].description);
-        self.subTask(allData[0].subTask);
+        self.subTask($.parseJSON(allData[0].subTask));
     });
     self.save = function(){
         $.post("/updateTaskDetails", {
-                _id: self._id,title: self.title(), description:self.description(), subTask: self.subTask(),
+                _id: self._id,title: self.title(), description:self.description(), subTask: ko.toJSON(self.subTask()),
                 startDate:self.startDate(), endDate:self.endDate()
             },function(data,status){
             if("success"==status){
