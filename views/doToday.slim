@@ -2,6 +2,7 @@ head
   meta name="author" content="Tianyi Wang"
   meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   script src="/views/js/jquery.min.js"
+  script src="/views/js/jquery-cookie.js"
   script src="/views/js/bootstrap.min.js"
   link rel="stylesheet" href="/views/css/app.min.css"
 body
@@ -44,6 +45,19 @@ body
         span.glyphicon.glyphicon-ok  data-bind="click: toFinish"
         span.glyphicon.glyphicon-remove  data-bind="click: toDustbin"
 
+  div id="mask"
 
+  div id="searchTip"
+    div.step1
+      a
+      span title="关闭"
+    div.step2
+      a
+      span title="关闭"
+    div.step3
+      a
+      span title="关闭"
+    div.step4
+      a
   script src="/views/js/knockout-3.3.0.js"
   script src="/views/js/app/doToday.js"

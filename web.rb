@@ -8,7 +8,8 @@ require 'date'
 
 configure do
   set :mongo_db, Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'doit')
-
+  set :port, 8080
+  set :bind, '0.0.0.0'
 end
 
 get '/' do
@@ -127,6 +128,7 @@ end
 set :public_folder, File.dirname('css')
 set :public_folder, File.dirname('js')
 set :public_folder, File.dirname('fonts')
+set :public_folder, File.dirname('file')
 
 def setTypeByStartDate (params)
   if(params[:startDate] == nil or params[:startDate] =='') then
@@ -138,4 +140,8 @@ def setTypeByStartDate (params)
   else
     params["type"] = '3'
   end
+end
+
+get '/demo' do
+  send_file 'views/file/demo.zip'
 end

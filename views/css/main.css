@@ -18,8 +18,6 @@ a.span.glyphicon{
 div.emptyPrompt{
     padding:2em;
     text-align: center;
-    top: 5em;
-    position: relative;
 }
 a.cancelA{
     text-decoration:none;
@@ -29,4 +27,88 @@ a.cancelA{
     float:right;
     position: relative;
     top: -1.4em;
+}
+#mask{
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background: #000;
+    opacity: 0.5;
+    display: none;
+}
+#searchTip div{
+    display: none;
+}
+#searchTip div a{
+    height: 32px;
+    width: 91px;
+    position: absolute;
+    cursor:pointer;
+}
+#searchTip div span{
+    cursor:pointer;
+    height: 33px;
+    width: 33px;
+    position: absolute;
+}
+.step1{
+    background: url(images/1.png);
+    height: 187px;
+    width: 407px;
+    float: right;
+    position: absolute;
+    top: 5px;
+    right: 3px;
+}
+.step1 a{
+    left: 161px;
+    top: 147px;
+}
+.step1 span{
+    left: 363px;
+    top: 145px;
+}
+.step2{
+    background: url(images/2.png);
+    height: 274px;
+    width: 407px;
+    position: absolute;
+    top: 0;
+}
+.step2 a{
+    left: 244px;
+    top: 233px;
+}
+.step2 span{
+    left: 359px;
+    top: 234px;
+}
+.step3{
+    background: url(images/3.png);
+    width: 473px;
+    height: 73px;
+    position: relative;
+    margin: 0 auto;
+    top: 30px;
+}
+.step3 span{
+    right: 0px;
+}
+.step3 a{
+    left: 170px;
+    top: 40px;
+}
+.step4{
+    background: url(images/4.png);
+    width: 382px;
+    height: 257px;
+    margin: 0 auto;
+    position: relative;
+    top: -90px;
+}
+.step4 a{
+    left: 146px;
+    top: 215px;
 }

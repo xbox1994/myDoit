@@ -59,3 +59,43 @@ function TaskModel(){
     }
 }
 ko.applyBindings(new TaskModel());
+
+window.onload = function(){
+    var oMask=document.getElementById('mask');
+    var oSearch=document.getElementById('searchTip');
+    var aStep=oSearch.getElementsByTagName('div');
+    var aA=oSearch.getElementsByTagName('a');
+    var aClose=oSearch.getElementsByTagName('span');
+
+    //第一次
+    //var cookie=document.cookie;
+    //var mDate=new Date();
+    //mDate.setDate(mDate.getDate()+30);
+    //document.cookie="key=www.doit.com;expires="+mDate;
+    if($.cookie('doitFirst')!="false"){
+        //初始化蒙版与第一步的显示状态
+        oMask.style.display=oSearch.style.display=aStep[0].style.display="block";
+
+        //下一步和开始体验按钮
+        for(var i=0;i<aA.length;i++){
+            aA[i].index=i;
+            aA[i].onclick=function(){
+                this.parentNode.style.display="none";
+                if(this.index<aStep.length-1){
+                    aStep[this.index+1].style.display="block";
+                }else{
+                    oMask.style.display=oSearch.style.display="none";
+                }
+            }
+        }
+
+        //关闭按钮
+        for(var i=0;i<aClose.length;i++){
+            aClose[i].onclick=function(){
+                oMask.style.display=oSearch.style.display="none";
+            }
+        }
+        $.cookie('doitFirst',false,{expires:7});
+    }
+
+}
