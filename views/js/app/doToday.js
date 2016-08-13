@@ -95,7 +95,7 @@ window.onload = function(){
                 oMask.style.display=oSearch.style.display="none";
             }
         }
-        $.cookie('doitFirst',false,{expires:7});
+        //$.cookie('doitFirst',"false",{expires:7});
     }
 
 }

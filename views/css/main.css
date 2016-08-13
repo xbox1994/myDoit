@@ -55,8 +55,8 @@ a.cancelA{
 }
 .step1{
     background: url(images/1.png);
-    height: 187px;
-    width: 407px;
+    height: 183px;
+    width: 405px;
     float: right;
     position: absolute;
     top: 5px;
@@ -89,9 +89,10 @@ a.cancelA{
     background: url(images/3.png);
     width: 473px;
     height: 73px;
-    position: relative;
-    margin: 0 auto;
-    top: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 50%;
 }
 .step3 span{
     right: 0px;
@@ -104,9 +105,10 @@ a.cancelA{
     background: url(images/4.png);
     width: 382px;
     height: 257px;
-    margin: 0 auto;
-    position: relative;
-    top: -90px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 50%;
 }
 .step4 a{
     left: 146px;
