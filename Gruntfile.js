@@ -44,6 +44,7 @@ module.exports = function (grunt) {
             }
         }
     });
+    grunt.registerTask('build', ['concat:css'])
     grunt.registerTask('dev', ['concat:css', 'shell:thin'])
     grunt.registerTask('r', ['shell:thin'])
 };
