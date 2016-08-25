@@ -6,6 +6,7 @@ GEM
       bson (~> 1.12.5)
     daemons (1.2.3)
     eventmachine (1.2.0.1)
+    json (2.0.2)
     mongo (1.12.5)
       bson (= 1.12.5)
     rack (1.6.4)
@@ -30,6 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  json
   mongo
   sinatra
   slim
