@@ -6,4 +6,4 @@ mkdir -p /usr/share/thin/myDoit
 cd /usr/share/thin/myDoit
 killall ruby
 bundle install
-ruby web.rb
+ruby web.rb &
