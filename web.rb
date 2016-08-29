@@ -1,11 +1,9 @@
 require 'sinatra'
-require 'sinatra/config_file'
 require 'mongo'
 require 'slim'
 require 'json'
 require 'date'
 
-config_file './config.yml'
 
 configure do
   mongoDBUrl = '192.168.56.104'
