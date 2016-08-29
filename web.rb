@@ -1,14 +1,16 @@
-
 require 'sinatra'
+require 'sinatra/config_file'
 require 'mongo'
-require 'json/ext'
 require 'slim'
 require 'json'
 require 'date'
 
+config_file './config.yml'
+
 configure do
-  set :mongo_db, Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'doit')
-  set :port, 8080
+  mongoDBUrl = '192.168.56.104'
+  set :mongo_db, Mongo::Client.new([ mongoDBUrl+':27017' ], :database => 'doit')
+  set :port, 8081
   set :bind, '0.0.0.0'
 end
 

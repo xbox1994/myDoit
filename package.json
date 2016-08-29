@@ -21,6 +21,8 @@
     "grunt-karma": "~0.8.0",
     "grunt-replace": "^0.9.2",
     "grunt-shell": "~0.6.4",
+    "load-grunt-tasks": "~0.3.0",
+    "time-grunt": "~0.2.9"
   },
   "scripts": {
     "test": "karma start karma.conf"
