@@ -5,7 +5,7 @@ GEM
     json (2.0.2)
     mongo (2.3.0)
       bson (~> 4.1)
-    rack (1.6.4)
+    rack (1.6.2)
     rack-protection (1.5.3)
       rack
     sinatra (1.4.7)
@@ -24,6 +24,7 @@ PLATFORMS
 DEPENDENCIES
   json
   mongo
+  rack (= 1.6.2)
   sinatra
   slim
 
