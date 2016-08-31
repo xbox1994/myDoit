@@ -6,4 +6,4 @@ mkdir -p ~/myDoit
 cd ~/myDoit
 killall ruby
 bundle install
-ruby web.rb &
+ruby web.rb >/dev/null 2>&1 &
