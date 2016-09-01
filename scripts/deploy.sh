@@ -1,6 +1,6 @@
 #!/bin/bash
-echo -------------------------"$HOSTNAME"------------------------------
-if [ "$HOSTNAME" = "nginx" ]; then
+echo -------------------------$(hostname)------------------------------
+if [ $(hostname) = "nginx" ]; then
     nginx -s stop
     nginx
 else
