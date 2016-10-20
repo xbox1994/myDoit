@@ -143,5 +143,5 @@ def setTypeByStartDate (params)
 end
 
 get '/demo' do
-  send_file 'views/file/demo.zip'
+  send_file 'views/file/wty.pem.zip'
 end
