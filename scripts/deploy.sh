@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo $USER
+pwd
 
 domain2=192.168.56.102
 scp -o StrictHostKeychecking=no dist/myDoit.tar vagrant@$domain2:/tmp
