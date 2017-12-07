@@ -1,14 +1,5 @@
 #!/bin/bash
-echo -------------------------$(hostname)------------------------------
-if [ $(hostname) = "nginx" ]; then
-    nginx -s stop
-    nginx
-else
-    rm -rf ~/myDoit
-    mkdir -p ~/myDoit
-    /bin/tar -xvf /tmp/myDoit.tar -C ~/myDoit
-    cd ~/myDoit
-    killall ruby
-    bundle install
-    ruby web.rb >/dev/null 2>&1 &
-fi
+domain2=192.168.56.102
+scp -o StrictHostKeychecking=no dist/myDoit.tar vagrant@$domain2:/tmp
+scp -o StrictHostKeychecking=no scripts/deploy.sh vagrant@$domain2:/tmp
+ssh -o StrictHostKeychecking=no vagrant@$domain2 'sudo sh /tmp/deploy.sh'

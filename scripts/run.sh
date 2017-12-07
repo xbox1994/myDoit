@@ -1,0 +1,15 @@
+#!/bin/bash
+echo -------------------------$(hostname)------------------------------
+if [ $(hostname) = "nginx" ]; then
+    nginx -s stop
+    nginx
+else
+    grunt build
+    rm -rf ~/myDoit
+    mkdir -p ~/myDoit
+    /bin/tar -xvf /tmp/myDoit.tar -C ~/myDoit
+    cd ~/myDoit
+    killall ruby
+    bundle install
+    ruby web.rb >/dev/null 2>&1 &
+fi
