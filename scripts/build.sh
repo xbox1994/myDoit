@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+echo $USER
+pwd
+
 npm i
 grunt build
 
