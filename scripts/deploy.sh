@@ -1,6 +1,9 @@
 #!/bin/bash
 domain2=192.168.56.102
 
+echo $USER
+pwd
+
 echo ${domain2}
 ping ${domain2}
 
