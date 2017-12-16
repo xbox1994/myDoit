@@ -4,7 +4,6 @@ if [ $(hostname) = "nginx" ]; then
     nginx -s stop
     nginx
 else
-    grunt build
     rm -rf ~/myDoit
     mkdir -p ~/myDoit
     /bin/tar -xvf /tmp/myDoit.tar -C ~/myDoit

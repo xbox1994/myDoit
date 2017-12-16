@@ -3,3 +3,4 @@ node_modules
 views/file
 dist
 views/css/app.min.css
+bin

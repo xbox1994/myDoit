@@ -24,9 +24,8 @@ PLATFORMS
 DEPENDENCIES
   json
   mongo
-  rack (= 1.6.2)
   sinatra
   slim
 
 BUNDLED WITH
-   1.12.5
+   1.14.3
