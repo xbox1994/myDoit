@@ -10,5 +10,5 @@ else
     cd ~/myDoit
     killall ruby
     bundle install
-    ruby web.rb >/dev/null 2>&1 &
+    ruby web.rb >/log/myDoit/log.log 2>&1 &
 fi
