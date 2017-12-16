@@ -6,7 +6,7 @@ require 'date'
 
 
 configure do
-  mongoDBUrl = '192.168.56.104'
+  mongoDBUrl = '192.168.56.103'
   set :mongo_db, Mongo::Client.new([ mongoDBUrl+':27017' ], :database => 'doit')
   set :port, 8081
   set :bind, '0.0.0.0'
